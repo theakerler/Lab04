@@ -14,6 +14,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.theakerler.lab04.ui.theme.Lab04Theme
@@ -32,11 +36,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MiPantalla() {
+    var mostrarTexto by remember { mutableStateOf(false) }
+
     LazyColumn {
         item {
-            Text(text = "Bienvenido a mi app")
-            FloatingActionButton(onClick = {}) {
+            FloatingActionButton(onClick = {
+                mostrarTexto = true
+            }) {
                 Icon(Icons.Default.Add, contentDescription = "Añadir")
+            }
+
+            if (mostrarTexto) {
+                Text("Hola mundo")
             }
         }
     }
